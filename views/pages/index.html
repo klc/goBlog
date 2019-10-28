@@ -4,21 +4,21 @@
     <small>Secondary Text</small>
 </h1>
 
-    {{- range $i, $p := .posts}}
+    {{range .posts}}
 <!-- Blog Post -->
 <div class="card mb-4">
     <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
     <div class="card-body">
-        <h2 class="card-title">{{$p.Title}}</h2>
-        <p class="card-text">{{$p.Content}}</p>
-        <a href="/c/{{$p.Slug}}" class="btn btn-primary">Read More &rarr;</a>
+        <h2 class="card-title">{{.Title}}</h2>
+        <p class="card-text">{{.Content}}</p>
+        <a href="/c/{{.Slug}}" class="btn btn-primary">Read More &rarr;</a>
     </div>
     <div class="card-footer text-muted">
         Posted on {{.CreatedAt | formatAsDate}} by
         <a href="#">Start Bootstrap</a>
     </div>
 </div>
-{{- end}}
+{{end}}
 <!-- Pagination -->
 <ul class="pagination justify-content-center mb-4">
     <li class="page-item {{if (eq .paginator.Page .paginator.TotalPage)}} disabled {{end}}">
@@ -28,5 +28,5 @@
         <a class="page-link" href="/p/{{.paginator.PrevPage}}">Newer &rarr;</a>
     </li>
 </ul>
-{{template "layers/footer.html"}}
+{{template "layers/footer.html" .}}
 {{end}}
